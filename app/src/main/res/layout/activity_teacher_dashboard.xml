@@ -52,7 +52,7 @@
             android:background="@drawable/bg_circle_grades"
             android:padding="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/school" />
+            android:src="@drawable/roa" />
 
         <TextView
             android:id="@+id/tvTeacherWelcome"

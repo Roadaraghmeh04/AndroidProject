@@ -48,8 +48,8 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         // التنقل إلى الصفحات
         cardSchedule.setOnClickListener(v -> animateAndStartActivity(cardSchedule, TeacherScheduleActivity.class, teacherId));
         cardGrades.setOnClickListener(v -> animateAndStartActivity(cardGrades, PublishGradesActivity.class, teacherId));
-      // cardAssignments.setOnClickListener(v -> animateAndStartActivity(cardAssignments, SubmitAssignmentActivity.class, teacherId));
-       // cardViewSubmissions.setOnClickListener(v -> animateAndStartActivity(cardViewSubmissions, ViewSubmittedAssignmentsActivity.class, teacherId));
+        cardAssignments.setOnClickListener(v -> animateAndStartActivity(cardAssignments, SendAssignmentActivity.class, teacherId));
+        cardViewSubmissions.setOnClickListener(v -> animateAndStartActivity(cardViewSubmissions, ViewSubmittedAssignmentsActivity.class, teacherId));
 
         // ✅ زر تسجيل الخروج
         btnLogout.setOnClickListener(v -> {
@@ -64,10 +64,12 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             view.animate().scaleX(1f).scaleY(1f).setDuration(100).start();
             new Handler().postDelayed(() -> {
                 Intent intent = new Intent(TeacherDashboardActivity.this, destination);
-                intent.putExtra("teacher_id", teacherId);
+                intent.putExtra("teacher_id", teacherId); // تمرير المعرف
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }, 150);
         }).start();
     }
+
+
 }

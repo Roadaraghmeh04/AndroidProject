@@ -18,9 +18,14 @@
         <activity android:name=".SubmitAssignmentActivity" />
         <activity android:name=".PublishGradesActivity" />
         <activity android:name=".TeacherScheduleActivity" />
+        <activity android:name=".SendAssignmentActivity" />
+        <activity android:name=".ViewSubmittedAssignmentsActivity" />
+        <activity android:name=".AddSubjectActivity" />
+        <activity android:name=".AddStudentActivity" />
+        <activity android:name=".AddScheduleActivity" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".RegisterDashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
