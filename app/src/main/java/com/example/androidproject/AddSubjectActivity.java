@@ -18,7 +18,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     private Button btnAddSubject;
 
     private static final String URL_ADD_SUBJECT = "http://10.0.2.2/school_api/add_subject.php";
-    private static final String URL_GET_TEACHERS = "http://10.0.2.2/school_api/get_teachers.php";
+    private static final String URL_GET_TEACHERS = "http://10.0.2.2/school_api/get_teacher.php";
 
     // لنخزن بيانات المعلمين بصيغة id و name
     private ArrayList<Teacher> teacherList = new ArrayList<>();
