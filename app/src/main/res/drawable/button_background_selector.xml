@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- زر مضغوط -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#5aa2b8" /> <!-- أغمق من الأزرق الأساسي -->
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- زر غير مفعل -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#cccccc" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- زر عادي -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/primary_blue" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+</selector>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary_blue">#6cb1c9</color>
+    <color name="soft_yellow">#ffdCAA</color>
+    <color name="light_gray">#f0f0f0</color>
+    <color name="warm_brown">#bf8e68</color>
+    <color name="yellow_soft">#ffdCAA</color>
+    <color name="gray_light">#f0f0f0</color>
+    <color name="brown_main">#bf8e68</color>
+    <color name="soft_blue_bg">#e1eff4</color>
+    <color name="cream_card">#fff9f3</color>
+    <color name="blue_button">#6cb1c9</color>
+    <color name="brown_text">#865c3c</color>
+    <color name="f0f0f0">#f0f0f0</color>
+    <color name="soft_logo_blue">#E5EDF5</color>
+    <color name="blue_main">#cbefff</color>
+    <color name="hint">#888888</color>
+    <color name="neutral_bg">#f0f0f0</color>
+
+</resources>

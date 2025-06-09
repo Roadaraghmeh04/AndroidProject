@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/soft_blue_bg"
+    tools:context=".SubmitAssignmentActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/cream_card"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- العنوان -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit_assignment"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/blue_button"
+                android:gravity="center"
+                android:layout_marginBottom="24dp" />
+
+            <!-- التسمية -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_assignment"
+                android:textSize="16sp"
+                android:textColor="@color/brown_text"
+                android:layout_marginBottom="8dp" />
+
+            <!-- السبنر -->
+            <Spinner
+                android:id="@+id/spinnerAssignments"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:backgroundTint="@color/yellow_soft"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/spinner_background" />
+
+            <!-- زر اختيار ملف -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChooseFile"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/choose_file"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/blue_button"
+                app:cornerRadius="16dp"
+                app:iconPadding="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- اسم الملف -->
+            <TextView
+                android:id="@+id/tvSelectedFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_file_selected2"
+                android:textColor="@color/brown_text"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- زر الإرسال -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/blue_button"
+                app:cornerRadius="16dp"
+                app:iconPadding="12dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
