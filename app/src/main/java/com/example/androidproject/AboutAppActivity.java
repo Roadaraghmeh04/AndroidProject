@@ -1,5 +1,6 @@
 package com.example.androidproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -28,5 +29,11 @@ public class AboutAppActivity extends AppCompatActivity {
             builder.show();
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AboutAppActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
