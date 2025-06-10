@@ -33,5 +33,8 @@
     <string name="email">Email</string>
     <string name="password2">Password</string>
     <string name="login3">Login</string>
+    <string name="welcome_student">Welcome, Student</string>
+    <string name="view_grades">View Grades</string>
+    <string name="view_assignments">View Assignments</string>
 
 </resources>

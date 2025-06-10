@@ -18,5 +18,12 @@
     <color name="blue_main">#cbefff</color>
     <color name="hint">#888888</color>
     <color name="neutral_bg">#f0f0f0</color>
+    <color name="backgroundColor">#F0F0F0</color>
+    <color name="primaryText">#212121</color>
+    <color name="dark_gray">#616161</color>
+    <color name="blue">#1976D2</color>
+    <color name="primary">#6200EE</color>
+
+
 
 </resources>

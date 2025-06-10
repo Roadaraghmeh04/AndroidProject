@@ -12,6 +12,9 @@ public class ScheduleItem {
         this.room = room;
     }
 
+    public ScheduleItem(String subject, String day, String subject1) {
+    }
+
     public String getDay() {
         return day;
     }
