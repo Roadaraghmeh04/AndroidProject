@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#F5F5F5"
+    android:layout_marginBottom="8dp"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/tvDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvTeacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teacher"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room"
+        android:textSize="14sp" />
+</LinearLayout>

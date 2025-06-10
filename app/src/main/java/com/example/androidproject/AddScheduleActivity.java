@@ -78,7 +78,7 @@ public class AddScheduleActivity extends AppCompatActivity {
     }
 
     private void loadSubjectsFromServer() {
-        String url = "http://10.0.2.2/school_api/get_subject.php";
+        String url = "http://10.0.2.2/school_api/get_subjects.php";
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
             try {

@@ -1,5 +1,6 @@
 package com.example.androidproject;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,8 +24,8 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             // بعد انتهاء الوقت، الانتقال إلى الشاشة التالية (مثلاً LoginActivity)
-           // Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-          //  startActivity(intent);
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            startActivity(intent);
             finish();
         }, SPLASH_DURATION);
         ImageView logoImage = findViewById(R.id.logoImage);
@@ -37,8 +38,6 @@ public class SplashActivity extends AppCompatActivity {
         logoImage.startAnimation(scaleUp);
         mediaPlayer = MediaPlayer.create(this, R.raw.nokia_style_tone);
         mediaPlayer.start();
-
-
 
     }
     @Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Spinner spinnerRole;
     MaterialButton btnLogin;
+    Button btninfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         spinnerRole = findViewById(R.id.spinnerRole);
         btnLogin = findViewById(R.id.btnLogin);
+        btninfo=findViewById(R.id.btnAboutApp);
+
+        btninfo.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, AboutAppActivity.class);
+            startActivity(intent);
+        });
 
         String[] roles = {"Student", "Teacher", "Registrar"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, roles);

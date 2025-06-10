@@ -9,7 +9,14 @@
         <item name="android:headerBackground">#6cb1c9</item> <!-- الأزرق الفاتح -->
         <item name="android:calendarTextColor">#6cb1c9</item> <!-- نفس الأزرق -->
         <item name="android:colorAccent">#ffdeaa</item> <!-- دائرة اليوم المحدد -->
+    </style>
 
+    <style name="ProfileItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
 
