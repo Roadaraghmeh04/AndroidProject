@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        android:padding="24dp"
+        android:elevation="4dp"
+        android:layout_margin="8dp">
+
+        <!-- Profile icon -->
+        <ImageView
+            android:id="@+id/imgProfileIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_profile"
+            android:contentDescription="Profile Icon"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Full name -->
+        <TextView
+            android:id="@+id/tvTeacherName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full Name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#5c4333"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Basic info -->
+        <TextView
+            android:id="@+id/tvTeacherEmail"
+            android:text="Email: teacher@example.com"
+            style="@style/ProfileItem" />
+
+        <TextView
+            android:id="@+id/tvTeacherPhone"
+            android:text="Phone Number: 0591234567"
+            style="@style/ProfileItem" />
+
+        <TextView
+            android:id="@+id/tvTeacherSubject"
+            android:text="Major: Math"
+            style="@style/ProfileItem" />
+
+        <TextView
+            android:id="@+id/tvTeacherGender"
+            android:text="Gender: Male"
+            style="@style/ProfileItem" />
+
+        <TextView
+            android:id="@+id/tvTeacherDOB"
+            android:text="Date Of Birth: 01/01/1980"
+            style="@style/ProfileItem" />
+
+        <TextView
+            android:id="@+id/tvTeacherID"
+            android:text="ID: 123456789"
+            style="@style/ProfileItem" />
+
+        <TextView
+            android:id="@+id/tvTeacherAddress"
+            android:text="Address: Ramallah"
+            style="@style/ProfileItem" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Performance rating -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Rating :"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginTop="12dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" />
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" />
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" />
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" />
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_off" />
+        </LinearLayout>
+
+        <!-- Biography -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About teacher"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/tvTeacherBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="High school math teacher with over 10 years of experience, distinguished by his clear and unique teaching style."
+            android:textSize="15sp"
+            android:textColor="#444444"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Action buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <!--            <Button-->
+            <!--                android:id="@+id/btnEditProfile"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="تعديل البروفايل"-->
+            <!--                android:backgroundTint="#6cb1c9"-->
+            <!--                android:textColor="#ffffff"-->
+            <!--                android:layout_marginEnd="8dp" />-->
+
+            <!--            <Button-->
+            <!--                android:id="@+id/btnSendMessage"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="رسالة خاصة"-->
+            <!--                android:backgroundTint="#f4c542"-->
+            <!--                android:textColor="#000000" />-->
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
