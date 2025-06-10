@@ -13,7 +13,6 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
-        <!-- 🔔 Notification + 👤 Profile -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,27 +28,14 @@
                 android:contentDescription="Notifications"
                 android:src="@drawable/active" />
 
-            <ImageView
-                android:id="@+id/profileIcon"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="260dp"
-                android:background="@drawable/bg_circle_grades"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/user" />
         </RelativeLayout>
 
-        <!-- 🧑‍🏫 Teacher Image -->
 
-        <!-- Welcome Message -->
         <ImageView
             android:id="@+id/imgTeacher"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="12dp"
-            android:background="@drawable/bg_circle_grades"
             android:padding="8dp"
             android:scaleType="centerCrop"
             android:src="@drawable/roa" />
@@ -97,7 +83,7 @@
                     android:background="@drawable/bg_circle_schedule"
                     android:contentDescription="Schedule"
                     android:padding="20dp"
-                    android:src="@drawable/ic_schedulee" />
+                    android:src="@drawable/ic_schedule" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,7 +133,7 @@
                     android:background="@drawable/bg_circle_assignment"
                     android:contentDescription="Assignments"
                     android:padding="20dp"
-                    android:src="@drawable/ic_assignmentt" />
+                    android:src="@drawable/ic_assignment" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,16 +167,57 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
             </LinearLayout>
+            <!-- Profile -->
+            <LinearLayout
+                android:id="@+id/Profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="12dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_circle_profile"
+                    android:contentDescription="Profile"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_profile" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Profile"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/Logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="12dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_circle_logout"
+                    android:contentDescription="Logout"
+                    android:padding="20dp"
+                    android:src="@drawable/logout" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Logout"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
         </GridLayout>
 
-        <!-- Logout -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogout"
-            android:layout_width="351dp"
-            android:layout_height="42dp"
-            android:backgroundTint="#6cb1c9"
-            android:text="Logout"
-            android:textColor="@android:color/white"
-            app:cornerRadius="20dp" />
+
     </LinearLayout>
 </ScrollView>

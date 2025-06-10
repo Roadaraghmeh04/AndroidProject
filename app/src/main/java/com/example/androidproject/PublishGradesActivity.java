@@ -18,7 +18,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import androidx.appcompat.widget.SearchView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,8 +69,9 @@ public class PublishGradesActivity extends AppCompatActivity {
                             String name = obj.getString("full_name");
                             String email = obj.getString("email");
                             String subjectName = obj.getString("subject_name");
+                            int subjectId = obj.getInt("subject_id");
+                            studentList.add(new StudentItem(id, name, email, subjectName, subjectId));
 
-                            studentList.add(new StudentItem(id, name, email, subjectName));
                         }
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {

@@ -5,16 +5,16 @@ public class StudentItem {
     private String name;
     private String email;
     private String subjectName;
-    private String grade = "";
+    private String grade;
     private int subjectId;
 
-    public StudentItem(int id, String name, String email, String subjectName) {
+    public StudentItem(int id, String name, String email, String subjectName, int subjectId) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.subjectName = subjectName;
-        // ملاحظة: ممكن تحتاج تجيب الـ subject_id من السيرفر مستقبلاً
-        this.subjectId = 1; // مؤقتاً ثابت
+        this.subjectId = subjectId;
+        this.grade = "";
     }
 
     public int getId() { return id; }

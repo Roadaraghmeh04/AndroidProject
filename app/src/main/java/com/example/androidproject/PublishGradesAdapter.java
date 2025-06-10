@@ -37,8 +37,8 @@ public class PublishGradesAdapter extends RecyclerView.Adapter<PublishGradesAdap
             tvName.setText(student.getName());
             tvEmail.setText(student.getEmail());
             tvSubject.setText("Subject: " + student.getSubjectName());
-
             etGrade.setText(student.getGrade());
+
             etGrade.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {}

@@ -31,31 +31,31 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/submit_assignment"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/blue_button"
+                android:layout_marginBottom="24dp"
                 android:gravity="center"
-                android:layout_marginBottom="24dp" />
+                android:text="@string/submit_assignment"
+                android:textColor="@color/blue_button"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <!-- التسمية -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="@string/select_assignment"
-                android:textSize="16sp"
                 android:textColor="@color/brown_text"
-                android:layout_marginBottom="8dp" />
+                android:textSize="16sp" />
 
             <!-- السبنر -->
             <Spinner
                 android:id="@+id/spinnerAssignments"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:padding="12dp"
-                android:backgroundTint="@color/yellow_soft"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/spinner_background" />
+                android:background="@drawable/spinner_background"
+                android:backgroundTint="@color/yellow_soft"
+                android:padding="12dp" />
 
             <!-- زر اختيار ملف -->
             <com.google.android.material.button.MaterialButton
@@ -63,22 +63,22 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/blue_button"
                 android:text="@string/choose_file"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/blue_button"
                 app:cornerRadius="16dp"
-                app:iconPadding="12dp"
-                android:layout_marginBottom="12dp" />
+                app:iconPadding="12dp" />
 
             <!-- اسم الملف -->
             <TextView
                 android:id="@+id/tvSelectedFile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="@string/no_file_selected2"
                 android:textColor="@color/brown_text"
-                android:textSize="14sp"
-                android:layout_marginBottom="16dp" />
+                android:textSize="14sp" />
 
             <!-- زر الإرسال -->
             <com.google.android.material.button.MaterialButton
@@ -86,9 +86,9 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:backgroundTint="@color/blue_button"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/blue_button"
                 app:cornerRadius="16dp"
                 app:iconPadding="12dp" />
         </LinearLayout>

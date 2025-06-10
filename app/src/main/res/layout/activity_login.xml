@@ -9,25 +9,28 @@
     tools:context=".LoginActivity">
 
     <!-- 🎓 اللوجو -->
+
+    <!-- 🪪 كارت تسجيل الدخول -->
     <TextView
         android:id="@+id/tvSchoolName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Global School"
         android:textColor="#6cb1c9"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="173dp"
         android:layout_height="158dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:contentDescription="logo"
         android:scaleType="fitCenter"
         android:src="@drawable/logo_smartschool"
@@ -35,7 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSchoolName" />
 
-    <!-- 🪪 كارت تسجيل الدخول -->
     <androidx.cardview.widget.CardView
         android:id="@+id/loginCard"
         android:layout_width="0dp"

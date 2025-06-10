@@ -79,18 +79,24 @@ public class LoginActivity extends AppCompatActivity {
 
                                 switch (role) {
                                     case "teacher":
-                                        Intent intent = new Intent(LoginActivity.this, TeacherDashboardActivity.class);
-                                        intent.putExtra("full_name", fullName);
-                                        intent.putExtra("teacher_id", teacherId); // ✅ تمرير teacher_id
-                                        startActivity(intent);
+                                        Intent teacherIntent = new Intent(LoginActivity.this, TeacherDashboardActivity.class);
+                                        teacherIntent.putExtra("full_name", fullName);
+                                        teacherIntent.putExtra("teacher_id", teacherId);
+                                        startActivity(teacherIntent);
                                         break;
+
                                     case "student":
-                                        // startActivity(new Intent(LoginActivity.this, StudentDashboardActivity.class));
+                                        Intent studentIntent = new Intent(LoginActivity.this, StudentDashboardActivity.class);
+                                        studentIntent.putExtra("full_name", fullName);
+                                        studentIntent.putExtra("student_id", teacherId); // 👈 استخدمي نفس الـ reference_id
+                                        startActivity(studentIntent);
                                         break;
+
                                     case "registrar":
-                                        // startActivity(new Intent(LoginActivity.this, RegistrarDashboardActivity.class));
+                                        // لاحقًا: أضيفي واجهة المسجل
                                         break;
                                 }
+
                             } else {
                                 String message = jsonObject.optString("message", "Login failed");
                                 Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();

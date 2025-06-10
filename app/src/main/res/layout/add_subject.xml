@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="#F9FAFB">
+    android:background="#F9FAFB"
+    android:layout_marginTop="48dp">
 
     <!-- عنوان أعلى الصفحة -->
     <TextView
