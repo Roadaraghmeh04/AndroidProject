@@ -97,7 +97,7 @@
                     android:background="@drawable/bg_circle_schedule"
                     android:contentDescription="Schedule"
                     android:padding="20dp"
-                    android:src="@drawable/ic_schedule" />
+                    android:src="@drawable/ic_schedulee" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
                     android:background="@drawable/bg_circle_assignment"
                     android:contentDescription="Assignments"
                     android:padding="20dp"
-                    android:src="@drawable/ic_assignment" />
+                    android:src="@drawable/ic_assignmentt" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
