@@ -9,14 +9,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.button.MaterialButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TeacherDashboardActivity extends AppCompatActivity {
 
     private View cardSchedule, cardGrades, cardAssignments, cardViewSubmissions, cardProfile, cardLogout;
     private TextView tvWelcome;
+    private ImageView notificationBell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         cardViewSubmissions = findViewById(R.id.ViewSubmissions);
         cardProfile = findViewById(R.id.Profile);
         cardLogout = findViewById(R.id.Logout);
-        ImageView notificationBell = findViewById(R.id.notificationBell); // ⬅️ هنا الإضافة المهمة
+        notificationBell = findViewById(R.id.notificationBell);  // ✅ صح بدون تكرار
 
         // رسالة الترحيب
         tvWelcome.setText("Welcome, " + (fullName != null ? fullName : "Teacher"));
@@ -68,9 +67,10 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             }).start();
         });
 
-        // زر الجرس لفتح رسائل
+        // ✅ فتح واجهة الإشعارات
         notificationBell.setOnClickListener(v -> {
             Intent intent = new Intent(TeacherDashboardActivity.this, MessagesActivity.class);
+            intent.putExtra("teacher_id", teacherId); // ضروري إذا بدك تفرقي بين المعلمين
             startActivity(intent);
         });
     }
