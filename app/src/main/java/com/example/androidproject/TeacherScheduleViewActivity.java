@@ -247,7 +247,7 @@ public class TeacherScheduleViewActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://10.0.2.2/school_api/get_schedule_by_teacher.php?teacher_id=" + teacherId;
+        String url = "http://10.0.2.2/school_api/get_schedule_by_teacher.php?teacher_id=6" + teacherId;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
