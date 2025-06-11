@@ -82,5 +82,5 @@ public class ViewScheduleActivity extends AppCompatActivity {
                 });
 
         requestQueue.add(request);
-    }
+}
 }

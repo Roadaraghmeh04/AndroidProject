@@ -25,62 +25,86 @@
             android:layout_gravity="center"
             android:layout_marginBottom="16dp" />
 
+        <!-- Spinner: اليوم -->
         <Spinner
             android:id="@+id/spinnerDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:background="#ffdeaa"
             android:layout_marginBottom="12dp" />
 
+        <!-- وقت البداية -->
         <EditText
             android:id="@+id/editStartTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:hint="Start Time (HH:MM)"
             android:focusable="false"
             android:backgroundTint="#6cb1c9"
             android:layout_marginBottom="12dp" />
 
+        <!-- وقت النهاية -->
         <EditText
             android:id="@+id/editEndTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:hint="End Time (HH:MM)"
             android:focusable="false"
             android:backgroundTint="#6cb1c9"
             android:layout_marginBottom="12dp" />
 
+        <!-- Spinner: الصف -->
+        <Spinner
+            android:id="@+id/spinnerClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:background="#ffdeaa"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Spinner: المادة -->
         <Spinner
             android:id="@+id/spinnerSubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:background="#ffdeaa"
             android:layout_marginBottom="12dp" />
 
+        <!-- Spinner: المعلم -->
         <Spinner
             android:id="@+id/spinnerTeacher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:background="#ffdeaa"
             android:layout_marginBottom="16dp" />
 
+        <!-- زر حفظ الجدول -->
         <Button
             android:id="@+id/btnSubmitSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="Add Schedule"
             android:textColor="#ffffff"
             android:backgroundTint="#6cb1c9"
             android:layout_marginBottom="12dp" />
 
+        <!-- زر عرض الجدول -->
         <Button
             android:id="@+id/btnShowSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="Show Teacher Schedule"
             android:textColor="#ffffff"
             android:backgroundTint="#bf8e68" />
 
+        <!-- جدول عرض الحصص -->
         <TableLayout
             android:id="@+id/tableSchedule"
             android:layout_width="match_parent"

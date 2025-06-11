@@ -12,19 +12,15 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -32,7 +28,7 @@ import java.util.Map;
 
 public class TeacherScheduleActivity extends AppCompatActivity {
 
-    Spinner daySpinner, subjectSpinner, teacherSpinner;
+    Spinner daySpinner, subjectSpinner, teacherSpinner, classSpinner;
     EditText startTimeEditText, endTimeEditText;
     Button saveButton, showScheduleButton;
     TableLayout tableSchedule;
@@ -41,9 +37,12 @@ public class TeacherScheduleActivity extends AppCompatActivity {
     ArrayList<Integer> subjectIds = new ArrayList<>();
     ArrayList<String> teacherList = new ArrayList<>();
     ArrayList<Integer> teacherIds = new ArrayList<>();
+    ArrayList<String> classList = new ArrayList<>();
+    ArrayList<Integer> classIds = new ArrayList<>();
 
     int selectedSubjectId = -1;
     int selectedTeacherId = -1;
+    int selectedClassId = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         daySpinner = findViewById(R.id.spinnerDay);
         subjectSpinner = findViewById(R.id.spinnerSubject);
         teacherSpinner = findViewById(R.id.spinnerTeacher);
+        classSpinner = findViewById(R.id.spinnerClass);
         startTimeEditText = findViewById(R.id.editStartTime);
         endTimeEditText = findViewById(R.id.editEndTime);
         saveButton = findViewById(R.id.btnSubmitSchedule);
@@ -62,6 +62,7 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         setupDaySpinner();
         loadSubjects();
         loadTeachers();
+        loadClasses();
 
         startTimeEditText.setOnClickListener(v -> showTimePicker(startTimeEditText));
         endTimeEditText.setOnClickListener(v -> showTimePicker(endTimeEditText));
@@ -119,6 +120,27 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         queue.add(request);
     }
 
+    private void loadClasses() {
+        String url = "http://10.0.2.2/school_api/getclasses.php";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
+            try {
+                JSONArray array = new JSONArray(response);
+                classList.clear();
+                classIds.clear();
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject obj = array.getJSONObject(i);
+                    classList.add(obj.getString("class_name"));
+                    classIds.add(obj.getInt("class_id"));
+                }
+                classSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, classList));
+            } catch (JSONException e) {
+                Toast.makeText(this, "Failed to load classes", Toast.LENGTH_SHORT).show();
+            }
+        }, error -> Toast.makeText(this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show());
+        queue.add(request);
+    }
+
     private void showTimePicker(EditText editText) {
         final Calendar calendar = Calendar.getInstance();
         TimePickerDialog dialog = new TimePickerDialog(this, (view, hour, minute) -> {
@@ -131,12 +153,17 @@ public class TeacherScheduleActivity extends AppCompatActivity {
     private void saveSchedule() {
         int subjectPos = subjectSpinner.getSelectedItemPosition();
         int teacherPos = teacherSpinner.getSelectedItemPosition();
-        if (subjectPos < 0 || teacherPos < 0) {
+        int classPos = classSpinner.getSelectedItemPosition();
+
+        if (subjectPos < 0 || teacherPos < 0 || classPos < 0) {
             Toast.makeText(this, "Please select all fields", Toast.LENGTH_SHORT).show();
             return;
         }
+
         selectedSubjectId = subjectIds.get(subjectPos);
         selectedTeacherId = teacherIds.get(teacherPos);
+        selectedClassId = classIds.get(classPos);
+
         String day = daySpinner.getSelectedItem().toString();
         String start = startTimeEditText.getText().toString();
         String end = endTimeEditText.getText().toString();
@@ -150,27 +177,10 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {
-                Log.d("SERVER_RESPONSE", response);
-
                 JSONObject jsonResponse = new JSONObject(response);
                 boolean success = jsonResponse.getBoolean("success");
-
                 if (success) {
-                    Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
-
-                    // ✅ الحيلة: إضافة الصف يدويًا في الجدول على الشاشة
-                    // Add the new row to the table manually
-                    TableRow row = new TableRow(TeacherScheduleActivity.this);
-                    String[] values = {day, start, end, subjectList.get(subjectPos)};
-                    for (String v : values) {
-                        TextView tv = new TextView(TeacherScheduleActivity.this);
-                        tv.setText(v);
-                        tv.setPadding(12, 8, 12, 8);
-                        row.addView(tv);
-                    }
-                    tableSchedule.addView(row);
-                    ;
-
+                    Toast.makeText(this, "Schedule Saved", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, jsonResponse.getString("message"), Toast.LENGTH_SHORT).show();
                 }
@@ -183,6 +193,7 @@ public class TeacherScheduleActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("teacher_id", String.valueOf(selectedTeacherId));
                 params.put("subject_id", String.valueOf(selectedSubjectId));
+                params.put("class_id", String.valueOf(selectedClassId));
                 params.put("day_of_week", day);
                 params.put("start_time", start);
                 params.put("end_time", end);
@@ -192,17 +203,17 @@ public class TeacherScheduleActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-
     private void showSchedule() {
         int teacherPos = teacherSpinner.getSelectedItemPosition();
         if (teacherPos < 0) {
             Toast.makeText(this, "Select a teacher", Toast.LENGTH_SHORT).show();
             return;
         }
+
         int teacherId = teacherIds.get(teacherPos);
         String url = "http://10.0.2.2/school_api/get_schedule_by_teacher.php?teacher_id=" + teacherId;
 
-        // tableSchedule.removeAllViews();
+        tableSchedule.removeAllViews();
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
@@ -240,5 +251,6 @@ public class TeacherScheduleActivity extends AppCompatActivity {
                 Toast.makeText(this, "Parse error", Toast.LENGTH_SHORT).show();
             }
         }, error -> Toast.makeText(this, "Request error", Toast.LENGTH_SHORT).show());
-        queue.add(request);}
+        queue.add(request);
+    }
 }
