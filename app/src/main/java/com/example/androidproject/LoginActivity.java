@@ -18,7 +18,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         spinnerRole = findViewById(R.id.spinnerRole);
         btnLogin = findViewById(R.id.btnLogin);
-        btninfo=findViewById(R.id.btnAboutApp);
+        btninfo = findViewById(R.id.btnAboutApp);
 
         btninfo.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, AboutAppActivity.class);
@@ -72,40 +71,40 @@ public class LoginActivity extends AppCompatActivity {
                             String status = jsonObject.getString("status");
 
                             if (status.equals("success")) {
+                                int userId = jsonObject.getInt("user_id");
                                 String fullName = jsonObject.getString("full_name");
-                                int teacherId = jsonObject.optInt("user_id", -1); // 👈 احصل على ID المعلم
+                                String userRole = jsonObject.getString("role");
 
-                                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-
-                                switch (role) {
+                                switch (userRole) {
                                     case "teacher":
                                         Intent teacherIntent = new Intent(LoginActivity.this, TeacherDashboardActivity.class);
                                         teacherIntent.putExtra("full_name", fullName);
-                                        teacherIntent.putExtra("teacher_id", teacherId);
+                                        teacherIntent.putExtra("teacher_id", userId);
                                         startActivity(teacherIntent);
                                         break;
-
                                     case "student":
                                         Intent studentIntent = new Intent(LoginActivity.this, StudentDashboardActivity.class);
                                         studentIntent.putExtra("full_name", fullName);
-                                        studentIntent.putExtra("student_id", teacherId); // 👈 استخدمي نفس الـ reference_id
+                                        studentIntent.putExtra("student_id", userId);
                                         startActivity(studentIntent);
                                         break;
-
                                     case "registrar":
-                                        // لاحقًا: أضيفي واجهة المسجل
+                                        Intent registrarIntent = new Intent(LoginActivity.this, RegisterDashboardActivity.class);
+                                        registrarIntent.putExtra("full_name", fullName);
+                                        registrarIntent.putExtra("registrar_id", userId);
+                                        startActivity(registrarIntent);
                                         break;
+                                    default:
+                                        Toast.makeText(this, "Unknown role", Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
-                                String message = jsonObject.optString("message", "Login failed");
-                                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(LoginActivity.this, "Error parsing response", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Log.e("LOGIN_RESPONSE", response);
+                            Toast.makeText(this, "Error parsing response", Toast.LENGTH_SHORT).show();
                         }
+
                     },
                     error -> {
                         error.printStackTrace();

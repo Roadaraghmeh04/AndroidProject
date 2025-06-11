@@ -60,7 +60,7 @@ public class AddScheduleActivity extends AppCompatActivity {
         tableSchedule = findViewById(R.id.tableSchedule);
 
         setupDaySpinner();
-        loadSubjectsFromServer();
+        loadSubjects();
         loadClassesFromServer();
 
         startTimeEditText.setOnClickListener(v -> showTimePicker(startTimeEditText));
@@ -77,29 +77,33 @@ public class AddScheduleActivity extends AppCompatActivity {
         daySpinner.setAdapter(adapter);
     }
 
-    private void loadSubjectsFromServer() {
-        String url = "http://10.0.2.2/school_api/get_subjects.php";
+    private void loadSubjects() {
+        String url = "http://10.0.2.2/school_api/get_subject.php";
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
             try {
-                JSONArray subjects = new JSONArray(response);
+                JSONArray array = new JSONArray(response);
                 subjectList.clear();
                 subjectIds.clear();
-                for (int i = 0; i < subjects.length(); i++) {
-                    JSONObject subject = subjects.getJSONObject(i);
-                    subjectList.add(subject.getString("subject_name"));
-                    subjectIds.add(subject.getInt("subject_id"));
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject obj = array.getJSONObject(i);
+                    subjectList.add(obj.getString("subject_name"));
+                    subjectIds.add(obj.getInt("subject_id"));
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, subjectList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 subjectSpinner.setAdapter(adapter);
             } catch (JSONException e) {
-                Toast.makeText(this, "Failed to load subjects", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                Toast.makeText(this, "Parsing error", Toast.LENGTH_SHORT).show();
             }
-        }, error -> Toast.makeText(this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show());
-
+        }, error -> {
+            error.printStackTrace();
+            Toast.makeText(this, "Failed to load subjects", Toast.LENGTH_SHORT).show();
+        });
         queue.add(request);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -107,6 +111,7 @@ public class AddScheduleActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     private void loadClassesFromServer() {
         String url = "http://10.0.2.2/school_api/load_classes.php";
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -225,8 +230,7 @@ public class AddScheduleActivity extends AppCompatActivity {
                             obj.getString("day_of_week"),
                             obj.getString("start_time"),
                             obj.getString("end_time"),
-                            obj.optString("subject_name", "-"),
-//                            obj.optString("teacher_name", "-")
+                            obj.optString("subject_name", "-")
                     };
 
                     for (String v : values) {
@@ -246,5 +250,5 @@ public class AddScheduleActivity extends AppCompatActivity {
         queue.add(request);
         Log.d("DEBUG", "classIds: " + classIds.toString());
         Log.d("DEBUG", "Selected Position: " + classSpinner.getSelectedItemPosition());
-}
+    }
 }
