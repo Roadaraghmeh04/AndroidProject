@@ -34,7 +34,6 @@ public class ViewScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_schedule);
-
         recyclerView = findViewById(R.id.recyclerSchedule);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

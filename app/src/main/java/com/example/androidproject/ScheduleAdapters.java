@@ -13,7 +13,7 @@ import java.util.List;
 public class ScheduleAdapters extends RecyclerView.Adapter<ScheduleAdapters.ScheduleViewHolder> {
 
     private List<ScheduleItems> scheduleList;
-    //test
+   //test
     public ScheduleAdapters(List<ScheduleItems> scheduleList) {
         this.scheduleList = scheduleList;
     }

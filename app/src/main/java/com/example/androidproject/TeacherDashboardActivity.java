@@ -49,7 +49,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         cardLogout.startAnimation(fadeIn);
 
         // فتح كل واجهة حسب الزر
-        cardSchedule.setOnClickListener(v -> animateAndStartActivity(cardSchedule, TeacherScheduleActivity.class, teacherId));
+        cardSchedule.setOnClickListener(v -> animateAndStartActivity(cardSchedule, TeacherScheduleViewActivity.class, teacherId));
         cardGrades.setOnClickListener(v -> animateAndStartActivity(cardGrades, PublishGradesActivity.class, teacherId));
         cardAssignments.setOnClickListener(v -> animateAndStartActivity(cardAssignments, SendAssignmentActivity.class, teacherId));
         cardViewSubmissions.setOnClickListener(v -> animateAndStartActivity(cardViewSubmissions, ViewSubmittedAssignmentsActivity.class, teacherId));

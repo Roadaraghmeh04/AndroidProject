@@ -2,13 +2,19 @@ package com.example.androidproject;
 
 import android.os.Bundle;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,15 +27,11 @@ public class AssignmentsListActivity extends AppCompatActivity {
     AssignmentAdapter adapter;
     RequestQueue requestQueue;
 
-    private int studentId;
-    private String BASE_URL = "http://10.0.2.2/school_api/get_assignmentss.php?student_id=1&assignment_id=1";
-
+    private String URL = "http://10.0.2.2/school_api/get_assignmentss.php?student_id=1&assignment_id=1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignments_list);
-
-        studentId = getIntent().getIntExtra("student_id", 0);
 
         recyclerView = findViewById(R.id.recyclerAssignments);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,31 +46,38 @@ public class AssignmentsListActivity extends AppCompatActivity {
     }
 
     private void loadAssignments() {
-        String urlWithParam = BASE_URL + "?student_id=" + studentId;
-
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
-                urlWithParam,
+                URL,
                 null,
-                response -> {
-                    assignmentList.clear();
-                    try {
-                        for (int i = 0; i < response.length(); i++) {
-                            JSONObject assignment = response.getJSONObject(i);
-                            String title = assignment.getString("title");
-                            String subject = assignment.getString("subject_name");
-                            String dueDate = assignment.getString("due_date");
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        assignmentList.clear();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject assignment = response.getJSONObject(i);
+                                String title = assignment.getString("title");
+                                String subject = assignment.getString("subject_name");
+                                String dueDate = assignment.getString("due_date");
 
-                            assignmentList.add(new AssignmentItem(title, subject, dueDate));
+                                assignmentList.add(new AssignmentItem(title, subject, dueDate));
+                            }
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(AssignmentsListActivity.this, "Parsing error", Toast.LENGTH_SHORT).show();
                         }
-                        adapter.notifyDataSetChanged();
-                    } catch (JSONException e) {
-                        Toast.makeText(this, "Parsing error", Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> Toast.makeText(this, "Volley Error: " + error.toString(), Toast.LENGTH_LONG).show()
-        );
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AssignmentsListActivity.this, "Volley Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                    }
+
+                });
 
         requestQueue.add(jsonArrayRequest);
-}
+    }
 }

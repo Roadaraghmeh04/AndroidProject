@@ -83,5 +83,6 @@ public class ViewGradesActivity extends AppCompatActivity {
 
                 });
 
-        requestQueue.add(jsonArrayRequest);}
+        requestQueue.add(jsonArrayRequest);
+}
 }

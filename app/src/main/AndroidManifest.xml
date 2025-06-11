@@ -30,10 +30,9 @@
         <activity android:name=".TeacherProfileActivity" />
         <activity android:name=".MessagesActivity" />
         <activity android:name=".ViewGradesActivity" />
-
-
-
-
+        <activity android:name=".ViewScheduleActivity" />
+        <activity android:name=".AssignmentsListActivity" />
+        <activity android:name=".TeacherScheduleViewActivity" />
 
         <activity
             android:name=".SplashActivity"
@@ -53,9 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewScheduleActivity" />
-        <activity android:name="ViewGradesActivity" />
-        <activity android:name=".AssignmentsListActivity" />
+
     </application>
 
 
