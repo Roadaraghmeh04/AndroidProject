@@ -28,7 +28,7 @@ public class ViewScheduleActivity extends AppCompatActivity {
     ScheduleAdapter adapter;
     RequestQueue requestQueue;
 
-    private final String URL = "http://10.0.2.2/school_sys/get_schedule.php";
+    private final String URL = "http://10.0.2.2/school_api/get_schedule.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

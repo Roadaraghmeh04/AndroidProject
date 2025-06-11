@@ -27,7 +27,7 @@ public class AssignmentsListActivity extends AppCompatActivity {
     AssignmentAdapter adapter;
     RequestQueue requestQueue;
 
-    private final String URL = "http://10.0.2.2/school_sys/get_assignments.php";
+    private final String URL = "http://10.0.2.2/school_api/get_assignments.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

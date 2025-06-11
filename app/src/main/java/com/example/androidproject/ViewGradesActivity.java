@@ -28,7 +28,7 @@ public class ViewGradesActivity extends AppCompatActivity {
     RequestQueue requestQueue;
 
 
-    private final String URL = "http://10.0.2.2/school_sys/get_grades.php?student_id=1";
+    private final String URL = "http://10.0.2.2/school_api/get_grades.php?student_id=?";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
