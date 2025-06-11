@@ -18,7 +18,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import androidx.appcompat.widget.SearchView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,8 @@ public class PublishGradesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private PublishGradesAdapter adapter;
-    private ArrayList<StudentItem> studentList;
+    private ArrayList<StudentItem> studentList = new ArrayList<>();
+    private ArrayList<StudentItem> fullList = new ArrayList<>();
     private Button btnSubmitGrades;
 
     @Override
@@ -37,10 +38,8 @@ public class PublishGradesActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewGrades);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         btnSubmitGrades = findViewById(R.id.btnSubmitGrades);
 
-        studentList = new ArrayList<>();
         adapter = new PublishGradesAdapter(studentList);
         recyclerView.setAdapter(adapter);
 
@@ -57,12 +56,13 @@ public class PublishGradesActivity extends AppCompatActivity {
     }
 
     private void fetchStudents(int teacherId) {
-        String url = "http://10.0.2.2/school_api/get_students.php?teacher_id=" + teacherId;
+        String url = "http://10.0.2.2/school_api/get_students.php?teacher_id=?" + teacherId;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
                         studentList.clear();
+                        fullList.clear();
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject obj = response.getJSONObject(i);
                             int id = obj.getInt("student_id");
@@ -70,12 +70,13 @@ public class PublishGradesActivity extends AppCompatActivity {
                             String email = obj.getString("email");
                             String subjectName = obj.getString("subject_name");
                             int subjectId = obj.getInt("subject_id");
-                            studentList.add(new StudentItem(id, name, email, subjectName, subjectId));
 
+                            StudentItem student = new StudentItem(id, name, email, subjectName, subjectId);
+                            studentList.add(student);
+                            fullList.add(student);
                         }
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
-                        e.printStackTrace();
                         Toast.makeText(this, "Error parsing students", Toast.LENGTH_SHORT).show();
                     }
                 },
@@ -89,13 +90,21 @@ public class PublishGradesActivity extends AppCompatActivity {
 
     private void sendGradesToServer() {
         String url = "http://10.0.2.2/school_api/submit_grades.php";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        int[] successCount = {0};
 
-        for (StudentItem student : studentList) {
+        for (StudentItem student : fullList) {
             String grade = student.getGrade();
             if (grade == null || grade.isEmpty()) continue;
 
             StringRequest request = new StringRequest(Request.Method.POST, url,
-                    response -> Log.d("GRADE_RESPONSE", response),
+                    response -> {
+                        Log.d("GRADE_RESPONSE", response);
+                        successCount[0]++;
+                        if (successCount[0] == fullList.size()) {
+                            Toast.makeText(this, "Grades submitted successfully!", Toast.LENGTH_SHORT).show();
+                        }
+                    },
                     error -> Log.e("GRADE_SEND_ERROR", error.toString())
             ) {
                 @Override
@@ -109,9 +118,11 @@ public class PublishGradesActivity extends AppCompatActivity {
                 }
             };
 
-            Volley.newRequestQueue(this).add(request);
+            queue.add(request);
         }
 
-        Toast.makeText(this, "Grades submitted", Toast.LENGTH_SHORT).show();
+        if (successCount[0] == 0) {
+            Toast.makeText(this, "No grades entered to submit", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -16,11 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -43,10 +39,10 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
 
     private Uri selectedFileUri;
     private static final int PICK_FILE_REQUEST = 1;
-    private static final String UPLOAD_URL = "http://10.0.2.2/school_api/submit_assignment.php";
     private static final String LOAD_ASSIGNMENTS_URL = "http://10.0.2.2/school_api/load_assignments.php";
+    private static final String UPLOAD_ASSIGNMENT_URL = "http://10.0.2.2/school_api/submit_assignment.php";
 
-    private int studentId = 1;
+    private int studentId = 1; // حطيه من الـ SharedPreferences لاحقًا إذا بدك
     private int assignmentId = 1;
 
     private final ArrayList<String> assignmentTitles = new ArrayList<>();
@@ -128,11 +124,11 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
         try {
             InputStream inputStream = getContentResolver().openInputStream(fileUri);
             byte[] fileData = getBytes(inputStream);
-
             String fileName = getFileName(fileUri);
+
             ProgressDialog progressDialog = ProgressDialog.show(this, "Uploading", "Please wait...", true);
 
-            VolleyMultipartRequest request = new VolleyMultipartRequest(Request.Method.POST, UPLOAD_URL,
+            VolleyMultipartRequest request = new VolleyMultipartRequest(Request.Method.POST, UPLOAD_ASSIGNMENT_URL,
                     response -> {
                         progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "File uploaded successfully", Toast.LENGTH_SHORT).show();
@@ -150,7 +146,6 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
             Map<String, VolleyMultipartRequest.DataPart> byteParams = new HashMap<>();
             byteParams.put("file", new VolleyMultipartRequest.DataPart(fileName, fileData));
 
-// هون الإضافة الأهم: تمرير البيانات للكلاس
             request.setParams(stringParams);
             request.setByteData(byteParams);
 
@@ -166,7 +161,6 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
         ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
         int bufferSize = 1024;
         byte[] buffer = new byte[bufferSize];
-
         int len;
         while ((len = inputStream.read(buffer)) != -1) {
             byteBuffer.write(buffer, 0, len);

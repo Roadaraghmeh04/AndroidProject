@@ -24,11 +24,11 @@ import java.util.List;
 public class ViewScheduleActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    List<ScheduleItem> scheduleList;
-    ScheduleAdapter adapter;
+    List<ScheduleItems> scheduleList;
+    ScheduleAdapters adapter;
     RequestQueue requestQueue;
 
-    private final String URL = "http://10.0.2.2/school_api/get_schedule.php";
+    private final String URL = "http://10.0.2.2/school_api/get_schedulee.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class ViewScheduleActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         scheduleList = new ArrayList<>();
-        adapter = new ScheduleAdapter((ArrayList<ScheduleItem>) scheduleList);
+        adapter = new ScheduleAdapters((ArrayList<ScheduleItems>) scheduleList);
         recyclerView.setAdapter(adapter);
 
         requestQueue = Volley.newRequestQueue(this);
@@ -67,7 +67,7 @@ public class ViewScheduleActivity extends AppCompatActivity {
                                 String time = obj.getString("start_time") + " - " + obj.getString("end_time");
                                 String room = obj.getString("room");
 
-                                scheduleList.add(new ScheduleItem(subject, day, time + " | " + room));
+                                scheduleList.add(new ScheduleItems(subject, day, time + " | " + room));
                             }
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
@@ -83,5 +83,5 @@ public class ViewScheduleActivity extends AppCompatActivity {
                 });
 
         requestQueue.add(request);
-    }
+}
 }

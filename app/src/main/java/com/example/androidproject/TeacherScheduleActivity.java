@@ -254,25 +254,29 @@ public class TeacherScheduleActivity extends AppCompatActivity {
             try {
                 JSONArray array = new JSONArray(response);
                 scheduleList.clear();
+
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject obj = array.getJSONObject(i);
-                    scheduleList.add(new ScheduleItem(
-                            obj.getString("day_of_week"),
-                            obj.getString("start_time"),
-                            obj.getString("end_time"),
-                            obj.optString("subject_name", "-")
-                    ));
+                    String day = obj.optString("day_of_week", "-");
+                    String start = obj.optString("start_time", "-");
+                    String end = obj.optString("end_time", "-");
+                    String subject = obj.optString("subject_name", "-");
+
+                    ScheduleItem item = new ScheduleItem(day, start + " - " + end, subject, "");
+                    scheduleList.add(item);
                 }
+
                 scheduleAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
-                Toast.makeText(this, "Parse error", Toast.LENGTH_SHORT).show();
-                Log.e("ScheduleParse", e.getMessage());
+                Toast.makeText(this, "Failed to parse schedule", Toast.LENGTH_SHORT).show();
+                Log.e("ScheduleParseError", e.getMessage());
             }
         }, error -> {
             Toast.makeText(this, "Error loading schedule", Toast.LENGTH_SHORT).show();
-            Log.e("ScheduleLoadError", error.getMessage());
+            Log.e("ScheduleLoadError", error.toString());
         });
 
         queue.add(request);
     }
+
 }
