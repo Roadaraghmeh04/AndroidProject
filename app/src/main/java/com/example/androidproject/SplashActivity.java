@@ -13,17 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_DURATION = 3000; // 3 ثوانٍ
+    private static final int SPLASH_DURATION = 3000;
     MediaPlayer mediaPlayer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash); // تأكد أن XML اسمه activity_splash.xml
+        setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(() -> {
-            // بعد انتهاء الوقت، الانتقال إلى الشاشة التالية (مثلاً LoginActivity)
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();

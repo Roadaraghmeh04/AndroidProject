@@ -14,29 +14,49 @@
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
 
-     //   <activity android:name=".TeacherDashboardActivity" />
-        <activity android:name=".SubmitAssignmentActivity" />
-        <activity android:name=".PublishGradesActivity" />
-        <activity android:name=".TeacherScheduleActivity" />
-        <activity android:name=".SendAssignmentActivity" />
-        <activity android:name=".ViewSubmittedAssignmentsActivity" />
-        <activity android:name=".AddSubjectActivity" />
-        <activity android:name=".AddStudentActivity" />
-        <activity android:name=".AddScheduleActivity" />
-        <activity android:name=".ManageUsersActivity" />
-        <activity android:name=".RegisterDashboardActivity" />
-        <activity android:name=".AboutAppActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".TeacherProfileActivity" />
-        <activity android:name=".MessagesActivity" />
-        <activity android:name=".ViewGradesActivity" />
-        <activity android:name=".ViewScheduleActivity" />
-        <activity android:name=".AssignmentsListActivity" />
-        <activity android:name=".TeacherScheduleViewActivity" />
+        <activity android:name=".TeacherDashboardActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".SubmitAssignmentActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".PublishGradesActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".TeacherScheduleActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".SendAssignmentActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".ViewSubmittedAssignmentsActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".AddSubjectActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".AddStudentActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".AddScheduleActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".ManageUsersActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".RegisterDashboardActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".AboutAppActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".LoginActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".TeacherProfileActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".MessagesActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".ViewGradesActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".ViewScheduleActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".AssignmentsListActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".TeacherScheduleViewActivity"
+            android:configChanges="orientation|screenSize" />
 
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -45,17 +65,15 @@
 
         <activity
             android:name=".StudentDashboardActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
     </application>
-
-
 
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

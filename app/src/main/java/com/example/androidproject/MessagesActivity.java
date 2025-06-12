@@ -1,6 +1,7 @@
 package com.example.androidproject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -20,14 +21,15 @@ public class MessagesActivity extends AppCompatActivity {
         listMessages = findViewById(R.id.listMessages);
 
         int teacherId = getIntent().getIntExtra("teacher_id", -1);
+        Log.d("MessagesActivity", "teacherId = " + teacherId);
 
         ArrayList<String> messages = new ArrayList<>();
 
-        if (teacherId == 3) { // Sami Awad
+        if (teacherId ==6 ) {
             messages.add("📥 Ahmad Khalid submitted Math Homework.");
             messages.add("🕒 Sunday 08:00 AM - Math (Room 101)");
             messages.add("🕒 Tuesday 08:00 AM - Math (Room 101)");
-        } else if (teacherId == 4) { // Sara Omar
+        } else if (teacherId == 4) {
             messages.add("📥 Lina Yasin submitted Science Worksheet.");
             messages.add("🕒 Sunday 09:00 AM - Science (Room 102)");
             messages.add("🕒 Tuesday 09:00 AM - Science (Room 102)");

@@ -22,11 +22,9 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_dashboard);
 
-        // استقبال البيانات
         String fullName = getIntent().getStringExtra("full_name");
         int teacherId = getIntent().getIntExtra("teacher_id", -1);
 
-        // ربط العناصر
         tvWelcome = findViewById(R.id.tvTeacherWelcome);
         cardSchedule = findViewById(R.id.Schedule);
         cardGrades = findViewById(R.id.Grades);
@@ -36,10 +34,8 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         cardLogout = findViewById(R.id.Logout);
         notificationBell = findViewById(R.id.notificationBell);  // ✅ صح بدون تكرار
 
-        // رسالة الترحيب
         tvWelcome.setText("Welcome, " + (fullName != null ? fullName : "Teacher"));
 
-        // حركة دخول
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_scale);
         cardSchedule.startAnimation(fadeIn);
         cardGrades.startAnimation(fadeIn);
@@ -48,14 +44,12 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         cardProfile.startAnimation(fadeIn);
         cardLogout.startAnimation(fadeIn);
 
-        // فتح كل واجهة حسب الزر
         cardSchedule.setOnClickListener(v -> animateAndStartActivity(cardSchedule, TeacherScheduleViewActivity.class, teacherId));
         cardGrades.setOnClickListener(v -> animateAndStartActivity(cardGrades, PublishGradesActivity.class, teacherId));
         cardAssignments.setOnClickListener(v -> animateAndStartActivity(cardAssignments, SendAssignmentActivity.class, teacherId));
         cardViewSubmissions.setOnClickListener(v -> animateAndStartActivity(cardViewSubmissions, ViewSubmittedAssignmentsActivity.class, teacherId));
         cardProfile.setOnClickListener(v -> animateAndStartActivity(cardProfile, TeacherProfileActivity.class, teacherId));
 
-        // Logout (زر دائري)
         cardLogout.setOnClickListener(v -> {
             cardLogout.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).withEndAction(() -> {
                 cardLogout.animate().scaleX(1f).scaleY(1f).setDuration(100).start();
@@ -67,10 +61,9 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             }).start();
         });
 
-        // ✅ فتح واجهة الإشعارات
         notificationBell.setOnClickListener(v -> {
             Intent intent = new Intent(TeacherDashboardActivity.this, MessagesActivity.class);
-            intent.putExtra("teacher_id", teacherId); // ضروري إذا بدك تفرقي بين المعلمين
+            intent.putExtra("teacher_id", teacherId);
             startActivity(intent);
         });
     }

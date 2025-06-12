@@ -27,7 +27,6 @@ public class Test extends AppCompatActivity {
     private ArrayList<String> studentNames;
     private ArrayAdapter<String> adapter;
 
-    //private static final String URL_STUDENTS = "http://192.168.1.25/school_api/get_students.php";
     private static final String URL_STUDENTS = "http://10.0.2.2/school_api/get_students.php";
 
     @Override

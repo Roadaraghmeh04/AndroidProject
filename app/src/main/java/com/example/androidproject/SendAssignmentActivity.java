@@ -37,7 +37,6 @@ public class SendAssignmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.send_assignment);
 
-        // استقبل teacher_id من الواجهة السابقة
         teacherId = getIntent().getIntExtra("teacher_id", -1);
 
         spinnerClasses = findViewById(R.id.spinnerClass);

@@ -50,17 +50,14 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
     public byte[] getBody() throws AuthFailureError {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
-            // إضافة البارامترات النصية
             for (Map.Entry<String, String> entry : mParams.entrySet()) {
                 buildTextPart(bos, entry.getKey(), entry.getValue());
             }
 
-            // إضافة البيانات الثنائية (الملف)
             for (Map.Entry<String, DataPart> entry : mByteData.entrySet()) {
                 buildDataPart(bos, entry.getValue(), entry.getKey());
             }
 
-            // نهاية الملف
             bos.write(footer.getBytes("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();

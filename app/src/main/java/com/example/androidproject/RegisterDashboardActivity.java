@@ -41,7 +41,6 @@ public class RegisterDashboardActivity extends AppCompatActivity {
         });
         btnBuildTeacherSchedule.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterDashboardActivity.this, TeacherScheduleActivity.class);
-            // نمرر إشارة إنه تم فتحها من registrar
             intent.putExtra("from_registrar", true);
             startActivity(intent);
         });

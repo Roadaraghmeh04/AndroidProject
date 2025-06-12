@@ -18,14 +18,12 @@ public class TeacherProfileActivity extends AppCompatActivity {
     TextView tvName, tvEmail, tvPhone, tvSubject, tvGender, tvDOB, tvIDNumber,
             tvAddress, tvBio;
 
-    int teacherId = 4; // غيّر حسب الـ ID المُسجّل
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_profile);
 
-        // الربط بين TextView والـ XML
         tvName = findViewById(R.id.tvTeacherName);
         tvEmail = findViewById(R.id.tvTeacherEmail);
         tvPhone = findViewById(R.id.tvTeacherPhone);
@@ -40,7 +38,7 @@ public class TeacherProfileActivity extends AppCompatActivity {
     }
 
     private void loadTeacherProfile() {
-        String url = "http://10.0.2.2/school_api/get_teacher_profile.php?teacher_id=" + teacherId;
+        String url = "http://10.0.2.2/school_api/get_teacher_profile.php?teacher_id=3?" ;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
@@ -67,7 +65,6 @@ public class TeacherProfileActivity extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                // Toast.makeText(this, "خطأ أثناء قراءة البيانات", Toast.LENGTH_SHORT).show();
             }
         }, error -> Toast.makeText(this, "فشل الاتصال بالخادم", Toast.LENGTH_SHORT).show());
 
